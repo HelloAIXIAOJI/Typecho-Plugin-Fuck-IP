@@ -10,12 +10,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * @link http://aixiaoji.blog.nbmax.top/
  */
 
-class IPBlocker_Plugin implements Typecho_Plugin_Interface
+class FUCKIP_Plugin implements Typecho_Plugin_Interface
 {
     // 激活插件
     public static function activate()
     {
-        Typecho_Plugin::factory('Widget_Archive')->beforeRender = array('IPBlocker_Plugin', 'checkIP');
+        Typecho_Plugin::factory('Widget_Archive')->beforeRender = array('FUCKIP_Plugin', 'checkIP');
     }
 
     // 禁用插件
@@ -40,14 +40,14 @@ class IPBlocker_Plugin implements Typecho_Plugin_Interface
     // 检查用户 IP 地址
     public static function checkIP($archive, $select)
     {
-        $options = Typecho_Widget::widget('Widget_Options')->plugin('IPBlocker');
+        $options = Typecho_Widget::widget('Widget_Options')->plugin('FUCKIP');
         $blockedIPs = $options->ips ? explode(',', $options->ips) : array();
 
         $userIP = self::getUserIP();
         if (in_array($userIP, $blockedIPs)) {
             $archive->response->throwJson(array(
                 'status' => 'error',
-                'message' => $options->blockedMessage ? $options->blockedMessage : 'You are forbidden to access this site.（傻鸟，你IP被我FUCK了！：请联系*你的联系方式*）'
+                'message' => $options->blockedMessage ? $options->blockedMessage : 'You are forbidden to access this site.（傻鸟，你IP被我禁了！：请联系Aixiaoji2020@163.com）'
             ));
             exit;
         }
