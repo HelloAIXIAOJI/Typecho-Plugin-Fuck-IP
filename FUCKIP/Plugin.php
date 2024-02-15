@@ -47,7 +47,7 @@ class IPBlocker_Plugin implements Typecho_Plugin_Interface
         if (in_array($userIP, $blockedIPs)) {
             $archive->response->throwJson(array(
                 'status' => 'error',
-                'message' => $options->blockedMessage ? $options->blockedMessage : 'You are forbidden to access this site.（傻鸟，你IP被我禁了！：请联系Aixiaoji2020@163.com）'
+                'message' => $options->blockedMessage ? $options->blockedMessage : 'You are forbidden to access this site.（傻鸟，你IP被我FUCK了！：请联系*你的联系方式*）'
             ));
             exit;
         }
